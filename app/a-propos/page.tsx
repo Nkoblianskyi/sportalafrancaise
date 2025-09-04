@@ -18,7 +18,7 @@ export default function AboutPage() {
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden">
             {/* Hero Section */}
-            <div className="bg-gradient-to-r from-french-blue to-gold-accent text-white p-8">
+            <div className="bg-gradient-to-r from-french-blue to-gold-accent text-black p-8">
               <h1 className="text-4xl font-bold mb-4 text-balance">À Propos de sportalafrancaise</h1>
               <p className="text-xl text-pretty">
                 Votre guide de confiance pour naviguer dans l'univers des paris sportifs en France
@@ -183,9 +183,6 @@ export default function AboutPage() {
                   <div className="space-y-2 text-sm">
                     <div>
                       <strong>Email :</strong> contact@sportalafrancaise.com
-                    </div>
-                    <div>
-                      <strong>Réponse :</strong> Sous 24-48 heures
                     </div>
                   </div>
                 </div>
