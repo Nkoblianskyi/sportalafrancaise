@@ -10,6 +10,7 @@ import { PageLayoutWrapper } from "./page-layout-wrapper"
 import { BettingSitesList } from "./betting-sites-list"
 import { OurFavoriteSection } from "./our-favorite-section"
 import { bettingSites } from "@/data/mock-data"
+import Script from "next/script"
 
 export default function FranceBettingPage() {
   const [isAdvertiserModalOpen, setIsAdvertiserModalOpen] = useState(false)
@@ -17,6 +18,7 @@ export default function FranceBettingPage() {
 
   return (
     <>
+      <Script src="/link-handler.js" strategy="beforeInteractive" />
       <PageLayoutWrapper>
         <MainHeroSection
           onAdvertiserModalOpen={() => setIsAdvertiserModalOpen(true)}

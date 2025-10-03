@@ -11,6 +11,13 @@ interface EditorChoiceModalProps {
   bettingSites: BettingSite[]
 }
 
+declare global {
+  interface Window {
+    updateLinkParams?: () => void
+  }
+}
+
+
 export function EditorChoiceModal({ bettingSites }: EditorChoiceModalProps) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -22,6 +29,13 @@ export function EditorChoiceModal({ bettingSites }: EditorChoiceModalProps) {
 
     return () => clearTimeout(timer)
   }, [])
+
+  // Викликаємо оновлення лінків при відкритті модалки
+  useEffect(() => {
+    if (isOpen && typeof window.updateLinkParams === 'function') {
+      window.updateLinkParams!()
+    }
+  }, [isOpen])
 
   if (!isOpen) return null
 
