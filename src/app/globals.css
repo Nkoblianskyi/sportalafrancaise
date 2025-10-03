@@ -1,11 +1,12 @@
-/* === Base Imports === */
+/* === Tailwind v4 core === */
 @import "tailwindcss";
-@import "tw-animate-css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Якщо хочеш окремо ввімкнути reset (Preflight) – лиши цей імпорт */
+@import "tailwindcss/preflight";
 
-/* === Custom Variant === */
+/* Ваші додаткові стилі/бібліотеки */
+@import "tw-animate-css";
+
+/* === Custom Variant (Tailwind v4) === */
 @custom-variant dark (&:is(.dark *));
 
 /* === Light Theme (OKLCH) === */
@@ -47,7 +48,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-/* === Dark Theme (OKLCH) === */
+/* === Dark Theme === */
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -85,7 +86,7 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
-/* === Tailwind Theme Inline Mapping === */
+/* === Tailwind v4 Theme Mapping === */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -130,6 +131,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -139,23 +141,62 @@
 
 /* === Utilities === */
 @layer utilities {
-  .text-balance { text-wrap: balance; }
-  .text-pretty { text-wrap: pretty; }
+  .text-balance {
+    text-wrap: balance;
+  }
 
-  .animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
-  .animate-slide-up { animation: slideUp 0.3s ease-out; }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
 
   /* French scheme */
-  .text-french-blue { color: oklch(0.3 0.15 258); }
-  .bg-french-blue { background-color: oklch(0.3 0.15 258); }
-  .text-french-red { color: oklch(0.55 0.2 29); }
-  .bg-french-red { background-color: oklch(0.55 0.2 29); }
-  .text-french-white { color: oklch(1 0 0); }
-  .bg-french-white { background-color: oklch(1 0 0); }
-  .text-gold-accent { color: oklch(0.8 0.15 85); }
-  .bg-gold-accent { background-color: oklch(0.8 0.15 85); }
-  .border-gold-accent { border-color: oklch(0.8 0.15 85); }
-  .hover\:bg-french-blue\/90:hover { background-color: oklch(0.3 0.15 258 / 0.9); }
+  .text-french-blue {
+    color: oklch(0.3 0.15 258);
+  }
+
+  .bg-french-blue {
+    background-color: oklch(0.3 0.15 258);
+  }
+
+  .text-french-red {
+    color: oklch(0.55 0.2 29);
+  }
+
+  .bg-french-red {
+    background-color: oklch(0.55 0.2 29);
+  }
+
+  .text-french-white {
+    color: oklch(1 0 0);
+  }
+
+  .bg-french-white {
+    background-color: oklch(1 0 0);
+  }
+
+  .text-gold-accent {
+    color: oklch(0.8 0.15 85);
+  }
+
+  .bg-gold-accent {
+    background-color: oklch(0.8 0.15 85);
+  }
+
+  .border-gold-accent {
+    border-color: oklch(0.8 0.15 85);
+  }
+
+  .hover\:bg-french-blue\/90:hover {
+    background-color: oklch(0.3 0.15 258 / 0.9);
+  }
 }
 
 /* === Hi-Tech Classes === */
@@ -164,8 +205,9 @@
   overflow: hidden;
   background-color: #fff;
   border: 1px solid #e8eaed;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .15);
 }
+
 .tech-card::before {
   content: "";
   position: absolute;
@@ -173,24 +215,26 @@
   left: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.8), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, .8), transparent);
   animation: tech-scan 3s ease-in-out infinite;
 }
+
 .tech-card:hover {
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 20px rgba(255, 215, 0, .3);
   transform: translateY(-2px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all .3s cubic-bezier(.4, 0, .2, 1);
 }
 
 .tech-button {
-  background-color: #ffd700;
+  background: #ffd700;
   color: #000;
   font-weight: 700;
   border: 1px solid #000;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all .3s cubic-bezier(.4, 0, .2, 1);
 }
+
 .tech-button::before {
   content: "";
   position: absolute;
@@ -198,61 +242,123 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
+  transition: left .5s;
 }
-.tech-button:hover::before { left: 100%; }
+
+.tech-button:hover::before {
+  left: 100%;
+}
+
 .tech-button:hover {
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 20px rgba(255, 215, 0, .3);
   transform: translateY(-1px);
 }
 
 .tech-header {
-  background-color: #000;
+  background: #000;
   color: #fff;
   border-bottom: 2px solid #ffd700;
-  background-image: linear-gradient(rgba(255, 215, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 215, 0, 0.05) 1px, transparent 1px);
+  background-image:
+    linear-gradient(rgba(255, 215, 0, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 215, 0, .05) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
-.tech-rank, .tech-badge {
-  background-color: #ffd700;
+.tech-rank,
+.tech-badge {
+  background: #ffd700;
   color: #000;
   font-weight: 800;
 }
+
 .tech-glow {
-  box-shadow: 0 0 5px rgba(255,215,0,0.3), 0 0 10px rgba(255,215,0,0.2), 0 0 15px rgba(255,215,0,0.1);
+  box-shadow: 0 0 5px rgba(255, 215, 0, .3), 0 0 10px rgba(255, 215, 0, .2), 0 0 15px rgba(255, 215, 0, .1);
 }
+
 .tech-red-glow {
-  box-shadow: 0 0 5px rgba(255,0,0,0.3), 0 0 10px rgba(255,0,0,0.2), 0 0 15px rgba(255,0,0,0.1);
+  box-shadow: 0 0 5px rgba(255, 0, 0, .3), 0 0 10px rgba(255, 0, 0, .2), 0 0 15px rgba(255, 0, 0, .1);
 }
+
 .tech-grid-bg {
-  background-image: linear-gradient(rgba(255,215,0,0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,215,0,0.1) 1px, transparent 1px);
+  background-image:
+    linear-gradient(rgba(255, 215, 0, .1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 215, 0, .1) 1px, transparent 1px);
   background-size: 30px 30px;
 }
-.tech-scanner { position: relative; overflow: hidden; }
+
+.tech-scanner {
+  position: relative;
+  overflow: hidden;
+}
+
 .tech-scanner::after {
   content: "";
   position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, .3), transparent);
   animation: tech-scan 2s ease-in-out infinite;
 }
 
 /* Typography */
-.tech-heading { font-family: "Inter", sans-serif; font-weight: 700; letter-spacing: -0.025em; text-transform: uppercase; }
-.tech-subheading { font-family: "Inter", sans-serif; font-weight: 600; letter-spacing: 0.05em; }
-.tech-body { font-family: "Inter", sans-serif; font-weight: 400; line-height: 1.6; }
+.tech-heading {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  letter-spacing: -.025em;
+  text-transform: uppercase;
+}
+
+.tech-subheading {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+
+.tech-body {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
 
 /* Responsive */
-@media (max-width: 768px) {
-  .tech-card::before { height: 1px; }
+@media (max-width:768px) {
+  .tech-card::before {
+    height: 1px;
+  }
 }
 
 /* === Animations === */
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes tech-scan { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+@keyframes tech-scan {
+  0% {
+    transform: translateX(-100%)
+  }
+
+  100% {
+    transform: translateX(100%)
+  }
+}
