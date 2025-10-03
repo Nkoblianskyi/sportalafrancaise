@@ -15,6 +15,7 @@ export interface BettingSite {
   isANJLicensed: boolean
   licenseNumber?: string
   securityVerified: boolean
+  description?: string
 }
 
 export interface ModalState {

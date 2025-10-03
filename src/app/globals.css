@@ -1,8 +1,14 @@
+/* === Base Imports === */
 @import "tailwindcss";
 @import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* === Custom Variant === */
 @custom-variant dark (&:is(.dark *));
 
+/* === Light Theme (OKLCH) === */
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -29,6 +35,8 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
+
+  /* Sidebar */
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -39,6 +47,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+/* === Dark Theme (OKLCH) === */
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -64,6 +73,8 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
+
+  /* Sidebar */
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -74,6 +85,7 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
+/* === Tailwind Theme Inline Mapping === */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -113,15 +125,20 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* === Base Layer === */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
+/* === Utilities === */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -139,7 +156,7 @@
     animation: slideUp 0.3s ease-out;
   }
 
-  /* Added French color scheme */
+  /* French scheme */
   .text-french-blue {
     color: oklch(0.3 0.15 258);
   }
@@ -181,10 +198,141 @@
   }
 }
 
+/* === Hi-Tech Classes === */
+.tech-card {
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+  border: 1px solid #e8eaed;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.tech-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.8), transparent);
+  animation: tech-scan 3s ease-in-out infinite;
+}
+
+.tech-card:hover {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  transform: translateY(-2px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tech-button {
+  background-color: #ffd700;
+  color: #000;
+  font-weight: 700;
+  border: 1px solid #000;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tech-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.tech-button:hover::before {
+  left: 100%;
+}
+
+.tech-button:hover {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+.tech-header {
+  background-color: #000;
+  color: #fff;
+  border-bottom: 2px solid #ffd700;
+  background-image: linear-gradient(rgba(255, 215, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 215, 0, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.tech-rank,
+.tech-badge {
+  background-color: #ffd700;
+  color: #000;
+  font-weight: 800;
+}
+
+.tech-glow {
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.2), 0 0 15px rgba(255, 215, 0, 0.1);
+}
+
+.tech-red-glow {
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.3), 0 0 10px rgba(255, 0, 0, 0.2), 0 0 15px rgba(255, 0, 0, 0.1);
+}
+
+.tech-grid-bg {
+  background-image: linear-gradient(rgba(255, 215, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 215, 0, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.tech-scanner {
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-scanner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+  animation: tech-scan 2s ease-in-out infinite;
+}
+
+/* Typography */
+.tech-heading {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.tech-subheading {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.tech-body {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tech-card::before {
+    height: 1px;
+  }
+}
+
+/* === Animations === */
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -195,8 +343,19 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes tech-scan {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
   }
 }
