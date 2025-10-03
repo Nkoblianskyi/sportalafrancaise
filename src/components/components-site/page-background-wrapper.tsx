@@ -10,7 +10,7 @@ export function PageBackgroundWrapper({ children }: { children: React.ReactNode 
                 <div
                     className="fixed inset-0"
                     style={{
-                        backgroundImage: "url(/bg-2.jpg)", // 👈 Французький бекграунд
+                        backgroundImage: "url(/bg.jpg)",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         backgroundAttachment: "fixed",
